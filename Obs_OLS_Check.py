@@ -19,7 +19,7 @@ SRunwayInfo=ip.SRunwayInfo
 NIns = ip.NIns
 if NIns == 'Y':
     NPrc=ip.NPrc
-    if NPrc <> 'N':
+    if NPrc != 'N':
         NBLDist=ip.NBLDist
 CN = ip.CN
 DayOnly = ip.CN
@@ -32,7 +32,7 @@ RPT = ip.RPT
 SIns = ip.SIns
 if SIns == 'Y':
     SPrc=ip.SPrc
-    if SPrc <> 'N':
+    if SPrc != 'N':
         SBLDist=ip.SBLDist
 RPT = ip.RPT
 

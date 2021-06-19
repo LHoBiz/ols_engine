@@ -14,7 +14,7 @@ SRunwayInfo=ip.SRunwayInfo
 NIns = ip.NIns
 if NIns == 'Y':
     NPrc=ip.NPrc
-    if NPrc <> 'N':
+    if NPrc != 'N':
         NBLDist=ip.NBLDist
 CN = ip.CN
 DayOnly = ip.CN
@@ -27,7 +27,7 @@ RPT = ip.RPT
 SIns = ip.SIns
 if SIns == 'Y':
     SPrc=ip.SPrc
-    if SPrc <> 'N':
+    if SPrc != 'N':
         SBLDist=ip.SBLDist
 RPT = ip.RPT
 
@@ -82,13 +82,10 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
             
             b = ApOls[3][1] + ApOls[3][8] - mdl.iN(accur)*j
             bUp = ApOls[3][1] + ApOls[3][8] - mdl.iN(accur)*(j+1)
-##            print 'b=',b
             b1= ApOls[3][1]+ApOls[3][3]
-##            print 'b1=',b1
             b2= ApOls[3][1]+ApOls[3][3]+ApOls[3][5]
-##            print 'b2',b2
             b3= ApOls[3][1]+ApOls[3][3]+ApOls[3][5] +ApOls[3][7]
-##            print 'b3',b3
+
 
 
             x = ApOls[3][0]/2+((ApOls[2][0] +(RED-E1))/ApOls[5][0]) #  = perp of Outer Edge of Trans adjacent to NthTrsld
@@ -105,20 +102,15 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
 
             ###fix this up
 ##            b4= ApOls[3][1]+(ApOls[2][0] + (RED-E1))/ApOls[3][4]
-##            print 'b3',b3
             if a > 0:
-##                if b < b4 and bUp >= b4:
                     
-                if b <= b3 and b > b2+mdl.iN(accur) and b2 <> b3:
-##                    print 'flag5'
+                if b <= b3 and b > b2+mdl.iN(accur) and b2 != b3:
                     e = E1 + ApOls[3][3]*ApOls[3][4] +\
                              ApOls[3][5]*ApOls[3][6]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag112',ct,K
 
                 elif b <= b2+mdl.iN(accur) and b > b2:
-##                    print 'flag1'
                     e = E1 + ApOls[3][3]*ApOls[3][4] +\
                              ApOls[3][5]*ApOls[3][6]
                              
@@ -130,15 +122,11 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [B1,A1,e1]
                     K.append(c)
-                    #print 'flag101',ct, K
                 elif b == b2:
-##                    print 'flag3'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + ApOls[3][5]*ApOls[3][6]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag120',ct, K
-                elif b >= b2-mdl.iN(accur) and b < b2 and b3<>b2:
-##                    print 'flag2'
+                elif b >= b2-mdl.iN(accur) and b < b2 and b3!=b2:
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4] + ApOls[3][5]*ApOls[3][6]
                     B1 = b2
@@ -147,23 +135,17 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag102',ct, K
                 elif b >= b2-mdl.iN(accur) and b < b2 and b3==b2:
-##                    print 'flag3'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag120',ct, K
 
                 elif b < b2-mdl.iN(accur) and b > b1+mdl.iN(accur):
-##                    print 'flag5'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag112',ct,K
 
                 elif b <= b1+mdl.iN(accur) and b > b1:
-##                    print 'flag6'
                     e = E1 + ApOls[3][3]*ApOls[3][4]+(b-b1)*ApOls[3][6]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4]
                     B1 = b1
@@ -172,16 +154,13 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [B1,A1,e1]
                     K.append(c)
-                    #print 'flag103',ct, K
 
                 elif b == b1:
                     e = E1 + ApOls[3][3]*ApOls[3][4]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag105',ct, K
                     
                 elif b >= b1-mdl.iN(accur) and b < b1:
-##                    print 'flag7'
                     e = E1 +(b-ApOls[3][1])*ApOls[3][4]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4]
                     B1 = b1
@@ -190,24 +169,19 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag104',ct, K
 
                 elif b < b1-mdl.iN(accur):
                     e = E1 +(b-ApOls[3][1])*ApOls[3][4]
                     c = [b,a,e]
                     K.append(c)
-                    #print 'flag113',ct,K
             elif a <= 0:
-                if b <= b3 and b > b2+mdl.iN(accur) and b2 <> b3:
-##                    print 'flag5'
+                if b <= b3 and b > b2+mdl.iN(accur) and b2 != b3:
                     e = E1 + ApOls[3][3]*ApOls[3][4] +\
                              ApOls[3][5]*ApOls[3][6]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag112',ct,K
 
                 elif b <= b2+mdl.iN(accur) and b > b2:
-##                    print 'flag1'
                     e = E1 + ApOls[3][3]*ApOls[3][4] +\
                              ApOls[3][5]*ApOls[3][6]
                              
@@ -219,15 +193,11 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [B1,0,e1]
                     K.append(c)
-                    #print 'flag101',ct, K
                 elif b == b2:
-##                    print 'flag3'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + ApOls[3][5]*ApOls[3][6]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag120',ct, K
-                elif b >= b2-mdl.iN(accur) and b < b2 and b3<>b2:
-##                    print 'flag2'
+                elif b >= b2-mdl.iN(accur) and b < b2 and b3!=b2:
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4] + ApOls[3][5]*ApOls[3][6]
                     B1 = b2
@@ -236,23 +206,17 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag102',ct, K
                 elif b >= b2-mdl.iN(accur) and b < b2 and b3==b2:
-##                    print 'flag3'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag120',ct, K
 
                 elif b < b2-mdl.iN(accur) and b > b1+mdl.iN(accur):
-##                    print 'flag5'
                     e = E1 + ApOls[3][3]*ApOls[3][4] + (b-b1)*ApOls[3][6]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag112',ct,K
 
                 elif b <= b1+mdl.iN(accur) and b > b1:
-##                    print 'flag6'
                     e = E1 + ApOls[3][3]*ApOls[3][4]+(b-b1)*ApOls[3][6]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4]
                     B1 = b1
@@ -261,16 +225,13 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [B1,0,e1]
                     K.append(c)
-                    #print 'flag103',ct, K
 
                 elif b == b1:
                     e = E1 + ApOls[3][3]*ApOls[3][4]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag105',ct, K
                     
                 elif b >= b1-mdl.iN(accur) and b < b1:
-##                    print 'flag7'
                     e = E1 +(b-ApOls[3][1])*ApOls[3][4]
                     e1 = E1 + ApOls[3][3]*ApOls[3][4]
                     B1 = b1
@@ -279,13 +240,13 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
                     K.append(c)
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag104',ct, K
+                    
 
                 elif b < b1-mdl.iN(accur):
                     e = E1 +(b-ApOls[3][1])*ApOls[3][4]
                     c = [b,0,e]
                     K.append(c)
-                    #print 'flag113',ct,K
+                   
                 
             if a == 0:
                 T.append(j)
@@ -301,7 +262,6 @@ def Approach(E1,E2,ns,Surf,accur,ApOls):
     F = [1,-1]
     
     for n in range(2):
-        #folder 
         f.write( '\n')
         f.write( '\n')
         f.write( '\n')

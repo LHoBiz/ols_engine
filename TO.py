@@ -20,7 +20,7 @@ SRunwayInfo=ip.SRunwayInfo
 NIns = ip.NIns
 if NIns == 'Y':
     NPrc=ip.NPrc
-    if NPrc <> 'N':
+    if NPrc != 'N':
         NBLDist=ip.NBLDist
 CN = ip.CN
 DayOnly = ip.CN
@@ -37,7 +37,7 @@ RPT = ip.RPT
 SIns = ip.SIns
 if SIns == 'Y':
     SPrc=ip.SPrc
-    if SPrc <> 'N':
+    if SPrc != 'N':
         SBLDist=ip.SBLDist
 RPT = ip.RPT
 
@@ -99,13 +99,13 @@ def NorthTO(NToOls,accur):
             elif TOL*Slope + innEdge/2 >= mdl.F_M(1000,1):
                 outEdge = mdl.F_M(1000,1)
         if TOTurn15d == 'Y':
-            print 'Stop - another method is required to determine take-off area'
+            print ('Stop - another method is required to determine take-off area')
     if TOAlt == 'Y':
         if Ins == 'Y' or  TOTurn15d == 'Y': 
             outEdge = mdl.F_M(900,1) 
         else:
             outEdge = mdl.F_M(600,1)
-	innEdge = mdl.F_M(90,1)
+    innEdge = mdl.F_M(90,1)
     innEdge = ToOls[0][0]
     outEdge = ToOls[3][0]
     J = range(1+int(math.ceil(TOL/mdl.iN(accur))))
@@ -355,13 +355,13 @@ def SouthTO(SToOls,accur):
             elif TOL*Slope + innEdge/2 >= mdl.F_M(1000,1):
                 outEdge = mdl.F_M(1000,1)
         if TOTurn15d == 'Y':
-            print 'Stop - another method is required to determine take-off area'
+            print ('Stop - another method is required to determine take-off area')
     if TOAlt == 'Y':
         if Ins == 'Y' or  TOTurn15d == 'Y': 
             outEdge = mdl.F_M(900,1) 
         else:
             outEdge = mdl.F_M(600,1)
-	innEdge = mdl.F_M(90,1)
+    innEdge = mdl.F_M(90,1)
     innEdge = ToOls[0][0]
     outEdge = ToOls[3][0]
     J = range(1+int(math.ceil(TOL/mdl.iN(accur))))

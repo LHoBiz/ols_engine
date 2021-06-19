@@ -17,7 +17,7 @@ SRunwayInfo=ip.SRunwayInfo
 NIns = ip.NIns
 if NIns == 'Y':
     NPrc=ip.NPrc
-    if NPrc <> 'N':
+    if NPrc != 'N':
         NBLDist=ip.NBLDist
 CN = ip.CN
 DayOnly = ip.CN
@@ -30,7 +30,7 @@ RPT = ip.RPT
 SIns = ip.SIns
 if SIns == 'Y':
     SPrc=ip.SPrc
-    if SPrc <> 'N':
+    if SPrc != 'N':
         SBLDist=ip.SBLDist
 RPT = ip.RPT
 
@@ -133,29 +133,28 @@ def rwyendplot(E1,E2,ns,Surf):
 	T = [
             [NTE,NTN,STE,STN],
             [STE,STN,NTE,NTN],
-            ]
+			]
 	for i in range(2):
-            f.write(   "<Placemark>\n")
-            
-            f.write( '<name>Runway Ends</name>\n')
-            f.write("""        
-            <styleUrl>#m_ylw-pushpin</styleUrl>
-    
-            <Point>
-    
-            <extrude>1</extrude>
+		f.write(   "<Placemark>\n")
+		f.write( '<name>Runway Ends</name>\n')
+		f.write("""        
+		<styleUrl>#m_ylw-pushpin</styleUrl>
 
-            <altitudeMode>absolute</altitudeMode>
+		<Point>
 
-            <gx:drawOrder>1</gx:drawOrder> 
-            <coordinates>""")
-            Utm = mdl.toUTM(T[i][0],T[i][1],T[i][2],T[i][3],ARP,E[i][0],E[i][1],0,0,0,ns)
-            Wgs = list(mdl.U_W(Utm[0],Utm[1],zone, E1))
-            f.write(str(Wgs[0])+","+str(Wgs[1])+","+str(Wgs[2]))
-            f.write(   "\n")
-            f.write(   "</coordinates></Point>")
-            f.write('</Placemark>\n')
-        f.write("</Folder>")
+		<extrude>1</extrude>
+
+		<altitudeMode>absolute</altitudeMode>
+
+		<gx:drawOrder>1</gx:drawOrder> 
+		<coordinates>""")
+		Utm = mdl.toUTM(T[i][0],T[i][1],T[i][2],T[i][3],ARP,E[i][0],E[i][1],0,0,0,ns)
+		Wgs = list(mdl.U_W(Utm[0],Utm[1],zone, E1))
+		f.write(str(Wgs[0])+","+str(Wgs[1])+","+str(Wgs[2]))
+		f.write(   "\n")
+		f.write(   "</coordinates></Point>")
+		f.write('</Placemark>\n')
+	f.write("</Folder>")
             
 def Obs2(E1,E2,ns,Surf,fi,CLWY,ToOls,offset):
 	f.write( '<Folder><name>'+Surf+'</name><open>1</open>\n')

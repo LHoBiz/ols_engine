@@ -26,7 +26,7 @@
         f.write('<Folder>\n')
         f.write('<name>North Precision</name>\n')
         if NIns == 'Y':
-            if NPrc <> 'N':
+            if NPrc != 'N':
                 f.write('<Folder>\n')
                 f.write('<name>Inner Approach</name>\n')
                 InApp.NInApp(NApOls,mdl.iN(accur))
@@ -46,7 +46,7 @@
         f.write('<Folder>\n')
         f.write('<name>South Precision</name>\n')            
         if SIns == 'Y':
-            if SPrc <> 'N':
+            if SPrc != 'N':
                 f.write('<Folder>\n')
                 f.write('<name>Inner Approach</name>\n')
                 InApp.SInApp(SApOls,mdl.iS(accur))

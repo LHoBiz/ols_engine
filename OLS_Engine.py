@@ -33,7 +33,7 @@ class dataInput:
     NIns = ip.NIns
     if NIns == 'Y':
         NPrc=ip.NPrc
-        if NPrc <> 'N':
+        if NPrc != 'N':
             NBLDist=ip.NBLDist
     CN = ip.CN
     DayOnly = ip.CN
@@ -50,7 +50,7 @@ class dataInput:
     SIns = ip.SIns
     if SIns == 'Y':
         SPrc=ip.SPrc
-        if SPrc <> 'N':
+        if SPrc != 'N':
             SBLDist=ip.SBLDist
     RPT = ip.RPT
 
@@ -319,14 +319,14 @@ class dataInput:
                         SApOls.append(AppOLS[9][i])
 
 
-    accur    = raw_input("Insert size of surface cells in metres (i.e. enter a, such that cell = a*a): ")
+    accur    = input("Insert size of surface cells in metres (i.e. enter a, such that cell = a*a): ")
     colour = "19ff0011"
 
 
 	
     f.write("""<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility><Icon><href>https://www.dropbox.com/s/a29wpru0ouojff9/DataInputBackground.jpg?dl=1</href></Icon><overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/><screenXY x="25" y="95" xunits="pixels" yunits="pixels"/><rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/><size x="0" y="0" xunits="pixels" yunits="pixels"/><styleUrl>#KMLStyler</styleUrl><ExtendedData><SchemaData schemaUrl="#NewFeatureType">""")
     f.write('<SimpleData name="Airport name">'+str(KML_NAME)+'</SimpleData>\n')
-    print CN, CL
+    #print CN, CL
     try:
         f.write('<SimpleData name="Code">'+str(int(CN))+str(CL)+'</SimpleData>\n')
     except:
@@ -431,7 +431,7 @@ class dataInput:
         f.write('<Folder>\n')
         f.write('<name>North Precision</name>\n')
         if NIns == 'Y':
-            if NPrc <> 'N':
+            if NPrc != 'N':
                 f.write('<Folder>\n')
                 f.write('<name>Inner Approach</name>\n')
                 InApp.NInApp(NApOls,mdl.iN(accur))
@@ -451,7 +451,7 @@ class dataInput:
         f.write('<Folder>\n')
         f.write('<name>South Precision</name>\n')            
         if SIns == 'Y':
-            if SPrc <> 'N':
+            if SPrc != 'N':
                 f.write('<Folder>\n')
                 f.write('<name>Inner Approach</name>\n')
                 InApp.SInApp(SApOls,mdl.iS(accur))
@@ -483,6 +483,6 @@ class dataInput:
 
     #f.close()
     os.startfile(completeName)
-    print 'OK, done now'
+    #print 'OK, done now'
 
 

@@ -76,7 +76,7 @@ class dataInput:
     NIns = ip.NIns
     if NIns == 'Y':
         NPrc=ip.NPrc
-        if NPrc <> 'N':
+        if NPrc != 'N':
             NBLDist=ip.NBLDist
     CN = ip.CN
     DayOnly = ip.CN
@@ -89,7 +89,7 @@ class dataInput:
     SIns = ip.SIns
     if SIns == 'Y':
         SPrc=ip.SPrc
-        if SPrc <> 'N':
+        if SPrc != 'N':
             SBLDist=ip.SBLDist
     RPT = ip.RPT
 

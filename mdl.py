@@ -6,7 +6,7 @@ import csv
 import EnvSettings
 
 from osgeo import osr
-APDATA = open('AirportData.csv','rb')
+APDATA = open('AirportData.csv','r')
     
 def U_W(easting, northing, zone, elev):
     utm_coordinate_system = osr.SpatialReference()
@@ -18,8 +18,9 @@ def U_W(easting, northing, zone, elev):
 
     # create transform component
     utm_to_wgs84_transform = osr.CoordinateTransformation(utm_coordinate_system,wgs84_coordinate_system) # (<from>, <to>)
-    return utm_to_wgs84_transform.TransformPoint(easting, northing, elev) # returns lon, lat, altitude
-
+    
+    lat, lon, alt = utm_to_wgs84_transform.TransformPoint(easting, northing, elev) # returns lon, lat, altitude
+    return lon, lat, alt
 def W_U(longitude, latitude, elev):    
     def get_utm_zone(longitude):
         return (int(1+(longitude+180.0)/6.0))
@@ -173,8 +174,8 @@ def isNS_EW(nsew):
 def iN(Input_Accuracy):
     A = Input_Accuracy
     while IsNum(A) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        ##print ''
+        ##print 'Please ensure you enter numbers only. Try again.'
         A = raw_input("Insert size of surface cells in metres (i.e. enter a, such that cell = a*a): ")
     A = float(A)
     return A
@@ -182,8 +183,8 @@ def iN(Input_Accuracy):
 def iS(Input_Accuracy):
     A = Input_Accuracy
     while IsNum(A) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        ##print ''
+        ##print 'Please ensure you enter numbers only. Try again.'
         A = raw_input("Insert size of surface cells in metres (i.e. enter a, such that cell = a*a): ")
     A = float(A)
     return A
@@ -198,10 +199,10 @@ def AirportData(KML_NAME):
 def SelectedData(KML_NAME,runway):
     D = AirportData(KML_NAME)
     for row in range(len(D)):
-        print 'flag1','KML_NAME=',KML_NAME,'row[0]=',row[0],'runway=',runway,'row[1]=',row[1]
+        ##print 'flag1','KML_NAME=',KML_NAME,'row[0]=',row[0],'runway=',runway,'row[1]=',row[1]
         if D[row][1] ==KML_NAME and D[row][0] == runway:
             return D[row]
-            print D[row] 
+            ##print D[row] 
         else:
             return False
         
@@ -214,23 +215,23 @@ def rwyID(KML_NAME):
 
 class Data:
     #Threshold UTM Coordinates
-    KML_NAME = raw_input('Type the name of the airport: ')
+    KML_NAME = input('Type the name of the airport: ')
 
     rwyDat = []
-    print 'Choose a corresponding number below: '
+    ##print 'Choose a corresponding number below: '
     for row in csv.reader(APDATA):
         if KML_NAME == row[1]:
-            print row[0],row[2],'Runway',row[5],'/',row[12]
+            ##print row[0],row[2],'Runway',row[5],'/',row[12]
             rwyDat.append(row)
     if len(rwyDat) <1:
-        print KML_NAME,"isn't on the AirportData.csv list.",'''
+        print (KML_NAME,"isn't on the AirportData.csv list.",'''
 
     You may either:
         1) press "Ctrl+C", enter data into AirportData.csv and start again; or
         2) proceed with providing answers as prompted by the following questions.
-        '''
+        ''')
     else:
-        ChooseRwy = raw_input('Enter number: ')
+        ChooseRwy = input('Enter number: ')
 
     def SelectedData(rwyDat,ChooseRwy,KML_NAME):
         for x in range(len(rwyDat)):
@@ -246,9 +247,11 @@ class Data:
     STE = SelectedData(rwyDat,ChooseRwy,KML_NAME)[13]
     STN = SelectedData(rwyDat,ChooseRwy,KML_NAME)[14]
 
-    print 'You need to tell OLS_Engine where to save your new file named: ',KML_NAME,'.'
+    ##print 'You need to tell OLS_Engine where to save your new file named: ',KML_NAME,'.'
     #KML_PATH = raw_input("Copy and paste the directory pathway you want your new KML to be located: ")
-    KML_PATH = 'C:/OSGeo4W64/PyPack/v0.2'
+    KML_PATH = os.path.join(os.getcwd(),'v0.2')
+    if not os.path.exists(KML_PATH):
+        os.mkdir(KML_PATH)
 
     completeName = os.path.join(KML_PATH, KML_NAME+".kml")
     NewKML = KML_NAME
@@ -259,25 +262,25 @@ class Data:
 
     projType = 'utm'#raw_input("Enter the data projection type (WGS84, UTM): ")
     while isProj(projType) == False:
-        print ''
-        print 'Please ensure you enter a valid response. Try again.'
+        ##print ''
+        ##print 'Please ensure you enter a valid response. Try again.'
         projType = raw_input("Enter the data projection type (WGS84, UTM): ")
     projType = isProj(projType)
 
     if projType == 'UTM':
         zone = SelectedData(rwyDat,ChooseRwy,KML_NAME)[4] #raw_input("Enter the UTM zone number: ")
         while IsNum(zone) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            ##print ''
+            ##print 'Please ensure you enter numbers only. Try again.'
             zone = raw_input("Enter the UTM zone number: ")
         zone = int(zone)
 
         #NTE = raw_input("Enter Northern Threshold Eastings UTM Coordinates: ")
         NTE = SelectedData(rwyDat,ChooseRwy,KML_NAME)[6]
-        print NTE
+        ##print NTE
         while IsNum(NTE) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            ##print ''
+            ##print 'Please ensure you enter numbers only. Try again.'
             NTE = raw_input("Enter Northern Threshold Eastings UTM WGS84 Coordinates: ")
         NTE = float(NTE)
 
@@ -285,18 +288,18 @@ class Data:
         NTN =  SelectedData(rwyDat,ChooseRwy,KML_NAME)[7]
 
         while IsNum(NTN) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            ##print ''
+            ##print 'Please ensure you enter numbers only. Try again.'
             NTN = raw_input("Enter Northern Threshold Northings UTM WGS84 Coordinates: ")
         NTN = float(NTN)
 
 
         #STE = raw_input("Enter Southern Threshold Eastings UTM WGS84 Coordinates: ")
         STE =  SelectedData(rwyDat,ChooseRwy,KML_NAME)[13]
-        print STE
+        ##print STE
         while IsNum(STE) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            ##print ''
+            ##print 'Please ensure you enter numbers only. Try again.'
             STE = raw_input("Enter Southern Threshold Eastings UTM WGS84 Coordinates: ")
         STE = float(STE)
 
@@ -304,47 +307,47 @@ class Data:
         STN =   SelectedData(rwyDat,ChooseRwy,KML_NAME)[14]
  
         while IsNum(STN) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             STN = raw_input("Enter Southern Threshold Northings UTM WGS84 Coordinates: ")
         STN = float(STN)
         
         #ARPE = raw_input("Enter ARP Eastings UTM Coordinates: ")
         ARPE = SelectedData(rwyDat,ChooseRwy,KML_NAME)[27]
-        print ARPE
+        #print ARPE
         while IsNum(ARPE) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ARPE = raw_input("Enter ARP Eastings UTM WGS84 Coordinates: ")
         ARPE = float(ARPE)
 
         #ARPN = raw_input("Enter ARP Northings UTM Coordinates: ")
         ARPN = SelectedData(rwyDat,ChooseRwy,KML_NAME)[28]
-        print ARPN
+        #print ARPN
         while IsNum(ARPN) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ARPN = raw_input("Enter ARP Northings UTM WGS84 Coordinates: ")
         ARPN = float(ARPN)
         
     if projType == 'WGS84':
         ns = raw_input("Enter n if north (i.e. +), or s if south (i.e. -), of the equator: ")
         while isNS_EW(ns) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ns = raw_input("Enter n if north (i.e. +), or s if south (i.e. -), of the equator: ")
         ns = isNS_EW(ns)
         ew = raw_input("Enter e if east (i.e. +) , or w if west (i.e. -), of the the prime meridium: ")
         while isNS_EW(ew) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ew = raw_input("Enter e if east (i.e. +) , or w if west (i.e. -), of the the prime meridium: ")
         ew = isNS_EW(ew)
 
         NTlat = raw_input("Enter Northern Threshold latitude in decimal degrees: ")
         while IsNum(NTlat) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             NTlat = raw_input("Enter Northern Threshold latitude in decimal degrees: ")
         NTlat = float(NTlat)
         if ns == 'N':
@@ -352,15 +355,15 @@ class Data:
         elif ns == 'S':
             NTlat= math.sqrt(math.pow(NTlat,2))*-1
         while isLAT_DD(NTlat,ns) == False:
-            print ''
-            print 'Please ensure you enter a valid response only. Try again.'
+            #print ''
+            #print 'Please ensure you enter a valid response only. Try again.'
             NTlat = raw_input("Enter Northern Threshold latitude in decimal degrees: ")       
         NTlat=isLAT_DD(NTlat,ns)
 
         NTlon = raw_input("Enter Northern Threshold longitude in decimal degrees: ")
         while IsNum(NTlon) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             NTlon = raw_input("Enter Northern Threshold longitude in decimal degrees: ")
         NTlon = float(NTlon)
         if ew == 'E':
@@ -368,8 +371,8 @@ class Data:
         elif ew == 'W':
             NTlon= math.sqrt(math.pow(NTlon,2))*-1
         while isLON_DD(NTlon,ew) == False:
-            print ''
-            print 'Please ensure you enter a valid response only. Try again.'
+            #print ''
+            #print 'Please ensure you enter a valid response only. Try again.'
             NTlon = raw_input("Enter Northern Threshold latitude in decimal degrees: ")       
         NTlon=isLON_DD(NTlon,ew)
 
@@ -377,8 +380,8 @@ class Data:
 
         STlat = raw_input("Enter Southern Threshold latitude in decimal degrees: ")
         while IsNum(STlat) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             STlat = raw_input("Enter Northern Threshold latitude in decimal degrees: ")
         STlat = float(STlat)
         if ns == 'N':
@@ -386,15 +389,15 @@ class Data:
         elif ns == 'S':
             STlat= math.sqrt(math.pow(STlat,2))*-1
         while isLAT_DD(STlat,ns) == False:
-            print ''
-            print 'Please ensure you enter a valid response only. Try again.'
+            #print ''
+            #print 'Please ensure you enter a valid response only. Try again.'
             STlat = raw_input("Enter Northern Threshold latitude in decimal degrees: ")       
         STlat=isLAT_DD(STlat,ns)
 
         STlon = raw_input("Enter Northern Threshold longitude in decimal degrees: ")
         while IsNum(STlon) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             STlon = raw_input("Enter Northern Threshold longitude in decimal degrees: ")
         STlon = float(STlon)
         if ew == 'E':
@@ -402,8 +405,8 @@ class Data:
         elif ew == 'W':
             STlon= math.sqrt(math.pow(STlon,2))*-1
         while isLON_DD(STlon,ew) == False:
-            print ''
-            print 'Please ensure you enter a valid response only. Try again.'
+            #print ''
+            #print 'Please ensure you enter a valid response only. Try again.'
             NTlon = raw_input("Enter Northern Threshold latitude in decimal degrees: ")       
         STlon=isLON_DD(STlon,ew)
 
@@ -413,8 +416,8 @@ class Data:
     ForM = 'm'
     ForM = IsFfMm(ForM)
     while IsFfMm(ForM) == False:
-        print ''
-        print 'Please ensure you enter either m or f only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either m or f only. Try again.'
         ForM = raw_input("Are the Threshold Elevation values in Metres or Feet (m / f)? ")
     ForM = IsFfMm(ForM)
 
@@ -423,24 +426,24 @@ class Data:
         #NEF = raw_input("Enter Northern Threshold Elevation in Feet: ")
         NEF = SelectedData(rwyDat,ChooseRwy,KML_NAME)[8]
         while IsNum(NEF) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             NEF = raw_input("Enter Northern Threshold Elevation in Feet: ")
         NE = F_M(float(NEF),1)
 
         #SEF = raw_input("Enter Southern Threshold Elevation in Feet: ")
         SEF = SelectedData(rwyDat,ChooseRwy,KML_NAME)[15]
         while IsNum(SEF) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             SEF = raw_input("Enter Southern Threshold Elevation in Feet: ")
         SE = F_M(float(SEF),1)
 
         #ARPf = raw_input("Enter Aerodrome Reference Point (ARP) Elevation in Feet: ")
         ARPf = SelectedData(rwyDat,ChooseRwy,KML_NAME)[19]
         while IsNum(ARPf) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ARPf = raw_input("Enter Aerodrome Reference Point (ARP) Elevation in Feet: ")
         ARP = F_M(float(ARPf),1)
         ARPf = float(ARPf)
@@ -450,24 +453,24 @@ class Data:
         #NEM = raw_input("Enter Northern Threshold Elevation in Metres: ")
         NEM = SelectedData(rwyDat,ChooseRwy,KML_NAME)[9]
         while IsNum(NEM) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             NEM = raw_input("Enter Northern Threshold Elevation in Metres: ")
         NE = float(NEM)
         
         #SEM = raw_input("Enter Southern Threshold Elevation in Metres: ")
         SEM = SelectedData(rwyDat,ChooseRwy,KML_NAME)[16]
         while IsNum(SEM) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             SEM = raw_input("Enter Southern Threshold Elevation in Metres: ")
         SE = float(SEM)
         #ARPm = raw_input("Enter Aerodrome Reference Point (ARP) elevation in Metres: ")
         ARPm = SelectedData(rwyDat,ChooseRwy,KML_NAME)[20]
         
         while IsNum(ARPm) == False:
-            print ''
-            print 'Please ensure you enter numbers only. Try again.'
+            #print ''
+            #print 'Please ensure you enter numbers only. Try again.'
             ARPm = raw_input("Enter Aerodrome Reference Point (ARP) elevation in Metres: ")
         ARP = float(ARPm)
         ARPm = float(ARPm)
@@ -483,13 +486,13 @@ class Data:
         if z1 == z2:
             zone = int(z1)
         else:
-            print 'Something went wrong with the zone calculations'
+            print ('Something went wrong with the zone calculations')
 
     #CN = raw_input("Enter Runway Code Number: ")
     CN = SelectedData(rwyDat,ChooseRwy,KML_NAME)[23]
     while CodeN(CN) == False:
-        print ''
-        print 'Please ensure you enter numbers only from 1 to 4 or "ALA". Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only from 1 to 4 or "ALA". Try again.'
         CN = raw_input("Enter Runway Code Number: ")
     if CN == 'ALA':
         CN = 'ALA'
@@ -500,8 +503,8 @@ class Data:
     #CL  = raw_input("Enter Runway Code Letter: ")
     CL  = SelectedData(rwyDat,ChooseRwy,KML_NAME)[24]
     while CodeL(CL) == False:   
-        print ''
-        print 'Please ensure you enter either A to F only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either A to F only. Try again.'
         CL = raw_input("Enter Runway Code Letter: ")
     if CL == 'ALA':
         CL = None
@@ -511,30 +514,30 @@ class Data:
     #NIns = raw_input("Is the Southern Approach runway an instrument runway (Y / N)? ")
     NIns = SelectedData(rwyDat,ChooseRwy,KML_NAME)[25]
     while IsYyNn(NIns) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         NIns = raw_input("Is the Southern Approach runway an instrument runway (Y / N)? ")
     NIns = IsYyNn(NIns)
     #STOIns = raw_input("Is the Southern Take-off runway an instrument runway (Y / N)? ")
     STOIns = 'N'
     while IsYyNn(STOIns) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         STOIns = raw_input("Is the Southern take-off runway an instrument runway (Y / N)? ")
     STOIns = IsYyNn(STOIns)
 
     #SIns = raw_input("Is the Northern Approach runway an instrument runway (Y / N)? ")
     SIns = SelectedData(rwyDat,ChooseRwy,KML_NAME)[25]
     while IsYyNn(SIns) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         SIns = raw_input("Is the Northern Approach runway an instrument runway (Y / N)? ")
     SIns = IsYyNn(SIns)
     #NTOIns = raw_input("Is the Northern Take-off runway an instrument runway (Y / N)? ")
     NTOIns = 'N'
     while IsYyNn(NTOIns) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         NTOIns = raw_input("Is the Northern take-off runway an instrument runway (Y / N)? ")
     NTOIns = IsYyNn(NTOIns)
 
@@ -542,10 +545,10 @@ class Data:
         #NPrc = raw_input("Is the Southern Approach runway a precision instrument runway (Y1 / Y2 / Y3 / N)? ")
         NPrc = SelectedData(rwyDat,ChooseRwy,KML_NAME)[26]
         while IsY1Y2Y3N(NPrc,CN) == False:   
-            print ''
-            print 'Please ensure you enter either Y or N only. Try again.'
-            print 'Please also ensure the Code No. and Precision Approach CAT No. combination is valid.'
-            print 'If you need to use another code number, press Ctrl+C to start again.'
+            #print ''
+            #print 'Please ensure you enter either Y or N only. Try again.'
+            #print 'Please also ensure the Code No. and Precision Approach CAT No. combination is valid.'
+            #print 'If you need to use another code number, press Ctrl+C to start again.'
             NPrc = raw_input("Is the Southern Approach runway a precision instrument runway (Y1 / Y2 / Y3 / N)? ")
         NPrc = IsY1Y2Y3N(NPrc,CN)
         if NPrc == 'Y1' or NPrc == 'Y2' or NPrc == 'Y3':
@@ -553,8 +556,8 @@ class Data:
                 #NBLDist = raw_input("For the Northern Approach Baulked Landing surface, enter the distance of the surface from the threshold: ")
                 NBLDist = '1800'
                 while IsNum(NBLDist) == False:
-                    print ''
-                    print 'Please ensure you enter numbers only. Try again.'
+                    #print ''
+                    #print 'Please ensure you enter numbers only. Try again.'
 
                     NBLDist = raw_input("For the Northern Approach Baulked Landing surface, enter the distance of the surface from the threshold: ")
                 NBLDist = float(NBLDist)
@@ -574,10 +577,10 @@ class Data:
         #SPrc = raw_input("Is the Northern Approach runway a precision instrument runway (Y1 / Y2 / Y3 / N)? ")
         SPrc = SelectedData(rwyDat,ChooseRwy,KML_NAME)[26]
         while IsY1Y2Y3N(SPrc,CN) == False:   
-            print ''
-            print 'Please ensure you enter either Y or N only. Try again.'
-            print 'Please also ensure the Code No. and Precision Approach CAT No. combination is valid.'
-            print 'If you need to use another code number, press Ctrl+C to start again.'
+            #print ''
+            #print 'Please ensure you enter either Y or N only. Try again.'
+            #print 'Please also ensure the Code No. and Precision Approach CAT No. combination is valid.'
+            #print 'If you need to use another code number, press Ctrl+C to start again.'
             SPrc = raw_input("Is the Northern Approach runway a precision instrument runway (Y1 / Y2 / Y3 / N)? ")
         SPrc = IsY1Y2Y3N(SPrc,CN)
         if SPrc == 'Y1' or SPrc == 'Y2' or SPrc == 'Y3':
@@ -585,8 +588,8 @@ class Data:
                 #SBLDist = raw_input("For the Northern Approach Baulked Landing surface, enter the distance of the surface from the threshold: ")
                 SBLDist = '1800'
                 while IsNum(SBLDist) == False:
-                    print ''
-                    print 'Please ensure you enter numbers only. Try again.'
+                    #print ''
+                    #print 'Please ensure you enter numbers only. Try again.'
                     
                     SBLDist = raw_input("For the Northern Approach Baulked Landing surface, enter the distance of the surface from the threshold: ")
                 SBLDist = float(SBLDist)
@@ -604,22 +607,22 @@ class Data:
     #RWY_WID = raw_input("Enter Runway Width in metres: ")
     RWY_WID = SelectedData(rwyDat,ChooseRwy,KML_NAME)[21]
     while IsNum(RWY_WID) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         RWY_WID = raw_input("Enter Runway Width in metres: ")
     RWY_WID = float(RWY_WID)
 
     NCLWY =   SelectedData(rwyDat,ChooseRwy,KML_NAME)[29]
     while IsNum(NCLWY) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         NCLWY = raw_input("Enter Take-off Innder Edge distance: ")
     NCLWY = float(NCLWY)
 
     SCLWY =   SelectedData(rwyDat,ChooseRwy,KML_NAME)[30]
     while IsNum(SCLWY) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         SCLWY = raw_input("Enter Take-off Innder Edge distance: ")
     SCLWY = float(SCLWY)
 
@@ -627,39 +630,39 @@ class Data:
 ##    #NCLWY = raw_input("Enter the length of the northern clearway in metres: ")
 ##    NCLWY = 60
 ##    while IsNum(NCLWY) == False:
-##        print ''
-##        print 'Please ensure you enter numbers only. Try again.'
+##        #print ''
+##        #print 'Please ensure you enter numbers only. Try again.'
 ##        NCLWY = raw_input("Enter the length of the northern clearway in metres: ")
 ##    NCLWY = float(NCLWY)
 ##    #SCLWY = raw_input("Enter the length of the southern clearway in metres: ")
 ##    SCLWY = 60
 ##    while IsNum(SCLWY) == False:
-##        print ''
-##        print 'Please ensure you enter numbers only. Try again.'
+##        #print ''
+##        #print 'Please ensure you enter numbers only. Try again.'
 ##        SCLWY = raw_input("Enter the length of the southern clearway in metres: ")
 ##    SCLWY = float(SCLWY)
     #RSW = raw_input("Enter Runway Strip Width in metres: ")
     
     RSW = SelectedData(rwyDat,ChooseRwy,KML_NAME)[22]
     while IsNum(RSW) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         RSW = raw_input("Enter Runway Strip Width in metres: ")
     RSW = float(RSW)
 
     #DayOnly  = raw_input("Is the runway used in day only (Y / N): ")
     DayOnly  = 'N'
     while IsYyNn(DayOnly) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         DayOnly = raw_input("Is the runway used in day only (Y / N): ")
     DayOnly = IsYyNn(DayOnly)
 
     #NMTOW22700kg = raw_input("Do aircraft with MTOW >= 22700 kg operate on the northern take-off runway? (Y / N): ")
     NMTOW22700kg = 'Y'
     while IsYyNn(NMTOW22700kg) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         NMTOW22700kg = raw_input("Do aircraft with MTOW >= 22700 kg operate on the northern take-off runway? (Y / N): ")
     NMTOW22700kg = IsYyNn(NMTOW22700kg)
 
@@ -669,16 +672,16 @@ class Data:
         #NMTOW5700kg = raw_input("Do aircraft with MTOW >= 5700 kg operate on the northern take-off runway? (Y / N): ")
         NMTOW5700kg = 'Y'
         while IsYyNn(NMTOW5700kg) == False:   
-            print ''
-            print 'Please ensure you enter either Y or N only. Try again.'
+            #print ''
+            #print 'Please ensure you enter either Y or N only. Try again.'
             NMTOW5700kg = raw_input("Do aircraft with MTOW >= 5700 kg operate on the northern take-off runway? (Y / N): ")
         NMTOW5700kg = IsYyNn(NMTOW5700kg)
         
     #NMTOW22700kg = raw_input("Do aircraft with MTOW >= 22700 kg operate on the southern take-off runway? (Y / N): ")
     SMTOW22700kg = 'y'
     while IsYyNn(SMTOW22700kg) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         SMTOW22700kg = raw_input("Do aircraft with MTOW >= 22700 kg operate on the southern take-off runway? (Y / N): ")
     SMTOW22700kg = IsYyNn(SMTOW22700kg)
 
@@ -688,8 +691,8 @@ class Data:
         #SMTOW5700kg = raw_input("Do aircraft with MTOW >= 5700 kg operate on the southern take-off runway? (Y / N): ")
         SMTOW5700kg = 'Y'
         while IsYyNn(SMTOW5700kg) == False:   
-            print ''
-            print 'Please ensure you enter either Y or N only. Try again.'
+            #print ''
+            #print 'Please ensure you enter either Y or N only. Try again.'
             SMTOW5700kg = raw_input("Do aircraft with MTOW >= 5700 kg operate on the southern take-off runway? (Y / N): ")
         SMTOW5700kg = IsYyNn(SMTOW5700kg)
     MTOW5700kg = IsYyNn('Y')
@@ -697,85 +700,85 @@ class Data:
     #TOLength = raw_input("What is the length of the northern take-off area (m): ")
     NTOL = '10000'
     while IsNum(NTOL) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         NTOL = raw_input("What is the length of the northern take-off area (m): ")
     NTOL = float(NTOL)
     #TOLength = raw_input("What is the length of the southern take-off area (m): ")
     STOL = '10000'
     while IsNum(STOL) == False:
-        print ''
-        print 'Please ensure you enter numbers only. Try again.'
+        #print ''
+        #print 'Please ensure you enter numbers only. Try again.'
         STOL = raw_input("What is the length of the southern take-off area (m): ")
     STOL = float(STOL)
 
     #NTOAlt = raw_input("Is an alternative northern take-off area required?(Y / N): ")
     NTOAlt = 'N'
     while IsYyNn(NTOAlt) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         NTOAlt = raw_input("Is an alternative northern take-off area required? (Y / N)")
     NTOAlt = IsYyNn(NTOAlt)
     #STOAlt = raw_input("Is an alternative southern take-off area required?(Y / N): ")
     STOAlt = 'N'
     while IsYyNn(STOAlt) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         STOAlt = raw_input("Is an alternative southern take-off area required? (Y / N)")
     STOAlt = IsYyNn(STOAlt)
 
     #JetTransport = raw_input("Are there Jet Transport Aeroplanes operating on the runway?(Y / N): ")
     JetTransport = 'Y'
     while IsYyNn(JetTransport) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         JetTransport = raw_input("Are there Jet Transport Aeroplanes operating on the runway?(Y / N): ")
     JetTransport = IsYyNn(JetTransport)
 
     #RwyWid30 = raw_input("Do aircraft operating on the runway only require a runway <= 30 wide?(Y / N): ")
     RwyWid30 = 'N'
     while IsYyNn(RwyWid30) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         RwyWid30 = raw_input("Do aircraft operating on the runway only require a runway <= 30 wide?(Y / N): ")
     RwyWid30 = IsYyNn(RwyWid30)
 
     #RPT = raw_input("Is the runway used by RPT aircraft? (Y / N): ")
     RPT = 'Y'
     while IsYyNn(RPT) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         RPT = raw_input("Is the runway used by RPT aircraft? (Y / N): ")
     RPT =   IsYyNn(RPT)
 
     #VMC = raw_input("Is the runway used only in VMC? (Y / N): ")
     VMC = 'N'
     while IsYyNn(VMC) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         VMC = raw_input("Is the runway used only in VMC? (Y / N): ")
     VMC = IsYyNn(VMC)
 
     #NTOTurn15d = raw_input("Is there a northern take-off procedure that has a turn >15 degrees? (Y / N): ")
     NTOTurn15d = 'N'
     while IsYyNn(NTOTurn15d) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         NTOTurn15d = raw_input("Is there a northern take-off procedure that has a turn >15 degrees? (Y / N): ")
     NTOTurn15d =   IsYyNn(NTOTurn15d)
     #STOTurn15d = raw_input("Is there a southern take-off procedure that has a turn >15 degrees? (Y / N): ")
     STOTurn15d = 'N'
     while IsYyNn(STOTurn15d) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         STOTurn15d = raw_input("Is there a southern take-off procedure that has a turn >15 degrees? (Y / N): ")
     STOTurn15d =   IsYyNn(STOTurn15d)
 
     ##TPSlope = raw_input("Can the take-off slope be reduced from 2% to 1.6%? (Y / N): ")
     TPSlope = 'N'
     while IsYyNn(TPSlope) == False:   
-        print ''
-        print 'Please ensure you enter either Y or N only. Try again.'
+        #print ''
+        #print 'Please ensure you enter either Y or N only. Try again.'
         TOTurn15d = raw_input("Can the take-off slope be reduced from 2% to 1.6%? (Y / N): ")
     TPSlope =   IsYyNn(TPSlope)
 
