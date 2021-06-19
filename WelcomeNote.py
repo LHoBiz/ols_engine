@@ -2,9 +2,11 @@ print ("""
 
 
 --------------------------------------------------
-Welcome to the beta version of the OLS Engine v0.2.
+Welcome to OLS Engine
 --------------------------------------------------
-Release date: 4 April 2016.
+Release date: 
+v0.2: 4 April 2016
+v0.3: 20 June 2021
 
 OLS Engine allows you to generate your own
 Obstacle Limitation Surface (OLS) for your own viewing
@@ -15,9 +17,12 @@ Google Earth or Google Earth Pro must be installed.
 OLS Engine relies on data input from you in order to
 generage the OLS. This input data is standard for any OLS.
 
-In order to generate your OLS, simply answer the questions
-that OLS Engine asks and follow the guidance provided
-within the questions. Google Earth is a great source of
+In order to generate your OLS, either:
+enter airport data in the AirportData.csv data file, or
+answer the questions that OLS Engine asks and follow the 
+guidance provided within the questions. 
+
+Google Earth is a great source of
 data to answer some of these questions.
 
 OLS Engine will finally ask you how high you wish to
@@ -35,8 +40,8 @@ Once OLS Engine opens your OLS model in Google Earth, you may
 customise the style settings, e.g. surface colour, transparency etc.
 
 Please report bugs to Luke Hodgson
-lhodgson@aviationprojects.com.au
-0411517382
+luke.hodgson@live.com.au
+0432514181
 
 Thank you and I hope you enjoy OLS Engine.
 
