@@ -14,6 +14,7 @@ Generate obstacle limitation surfaces given parameters that describe airport dat
 - The program uses the following import:
 `from osgeo import osr`
 so the python environment should have gdal installed.
+- Google Earth Pro must be installed. https://www.google.com.au/intl/en_uk/earth/download/gep/agree.html
 - I recommend either osgeo4w or conda.
 - I've used gdal330 python38 in a conda environment
 - I've also used python3 available via running osgeo4w.bat shell
