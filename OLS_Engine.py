@@ -324,7 +324,9 @@ class dataInput:
 
 
 	
-    f.write("""<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility><Icon><href>https://www.dropbox.com/s/a29wpru0ouojff9/DataInputBackground.jpg?dl=1</href></Icon><overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/><screenXY x="25" y="95" xunits="pixels" yunits="pixels"/><rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/><size x="0" y="0" xunits="pixels" yunits="pixels"/><styleUrl>#KMLStyler</styleUrl><ExtendedData><SchemaData schemaUrl="#NewFeatureType">""")
+    f.write("""<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility>"""
+    # <Icon><href>[enter logo url to image here]</href></Icon>
+    """<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/><screenXY x="25" y="95" xunits="pixels" yunits="pixels"/><rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/><size x="0" y="0" xunits="pixels" yunits="pixels"/><styleUrl>#KMLStyler</styleUrl><ExtendedData><SchemaData schemaUrl="#NewFeatureType">""")
     f.write('<SimpleData name="Airport name">'+str(KML_NAME)+'</SimpleData>\n')
     #print CN, CL
     try:
