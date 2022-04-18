@@ -334,7 +334,10 @@ class dataInput:
     colour = "19ff0011"
 
 
-	
+	######################################################
+    ## This part starts constructing the KML text that 
+    ## eventually be written to a KML file
+    ######################################################
     f.write("""<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility>"""
     # """<Icon><href>[enter logo url to image here]</href></Icon>"""
     """<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/><screenXY x="25" y="95" xunits="pixels" yunits="pixels"/><rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/><size x="0" y="0" xunits="pixels" yunits="pixels"/><styleUrl>#KMLStyler</styleUrl><ExtendedData><SchemaData schemaUrl="#NewFeatureType">""")
@@ -493,6 +496,11 @@ class dataInput:
         
     f.write( '</Document>\n')
     f.write( '</kml>\n')
+
+    ############################################################
+    ## Finish writing the KML text to file. Now start the file
+    ## in Google Earth.
+    ###########################################################
 
     #f.close()
     os.startfile(completeName)
