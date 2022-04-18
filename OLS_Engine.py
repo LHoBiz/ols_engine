@@ -336,7 +336,7 @@ class dataInput:
 
 	######################################################
     ## This part starts constructing the KML text that 
-    ## eventually be written to a KML file
+    ## will be written to a KML file
     ######################################################
     f.write("""<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility>"""
     # """<Icon><href>[enter logo url to image here]</href></Icon>"""
