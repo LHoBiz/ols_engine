@@ -82,6 +82,11 @@ class dataInput:
 
 
     RwyLen = math.sqrt((NTE-STE)*(NTE-STE) + (NTN-STN)*(NTN-STN))
+
+    #####################################################
+    ## Set OLS logic based on the rules set out in docs #
+    #####################################################
+    
     if CN == 'ALA':
         NApOls = []
         SApOls = []
@@ -317,6 +322,12 @@ class dataInput:
                     SApOls = []
                     for i in Surfaces:
                         SApOls.append(AppOLS[9][i])
+
+
+        #####################################################
+        ## Finish configuring settings based on OLS rules ###
+        #####################################################
+
 
 
     accur    = input("Insert size of surface cells in metres (i.e. enter a, such that cell = a*a): ")
