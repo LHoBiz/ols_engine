@@ -20,7 +20,7 @@ def U_W(easting, northing, zone, elev):
     utm_to_wgs84_transform = osr.CoordinateTransformation(utm_coordinate_system,wgs84_coordinate_system) # (<from>, <to>)
     
     lat, lon, alt = utm_to_wgs84_transform.TransformPoint(easting, northing, elev) # returns lon, lat, altitude
-    return lon, lat, alt
+    return lat, lon, alt
 def W_U(longitude, latitude, elev):    
     def get_utm_zone(longitude):
         return (int(1+(longitude+180.0)/6.0))
