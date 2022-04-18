@@ -399,7 +399,18 @@ class dataInput:
     f.write( '</Style>\n')
 
 ##    ObsData.Obs()
+
+    ###############################################################
+    ## This part builds the folders that make up the OLS surfaces
+    ###############################################################
+
     if CN == 'ALA':
+        ###########################################################
+        ## First, if CN (Code Number) is 'ALA', where normal 
+        ## airport standards don't apply, then prepare these 
+        ## surfaces.
+        ###########################################################
+
         f.write('<Folder>\n')
         f.write('<name>Approach/Take-off</name>\n')
         CAAP92App.ApN(accur)
@@ -413,37 +424,48 @@ class dataInput:
         f.write('</Folder>\n')
     else:
 
+        ############################################################
+        ## Prepare the OLS surfaces in separate KML folders below.
+        ## Comment / uncomment any folders you want to include
+        ## or exclude accordingly.
+        ############################################################
+
+        ## This is the Approach surface folder
         f.write('<Folder>\n')
         f.write('<name>Approach</name>\n')
-		
         App.NorthApp(NApOls,accur)
         App.SouthApp(SApOls,accur)
         f.write('</Folder>\n')
 		
+        ## This is the Transitional surface folder
         f.write('<Folder>\n')
         f.write('<name>Transitional</name>\n')        
         Trans.NorthTrans(NApOls,mdl.iN(accur))
         Trans.SouthTrans(SApOls,mdl.iS(accur))
         f.write('</Folder>\n')
         
+        ## This is the Inner Horizontal surface folder.
         f.write('<Folder>\n')
         f.write('<name>Inner Horizontal</name>\n')
         IHS.NInHor(NApOls,mdl.iN(accur))
         IHS.SInHor(SApOls,mdl.iS(accur))
         f.write('</Folder>\n')
         
+        ## This is the Conical surface folder
         f.write('<Folder>\n')
         f.write('<name>Conical</name>\n')
         Conl.Ncon(NApOls,mdl.iN(accur))
         Conl.Scon(SApOls,mdl.iS(accur))
         f.write('</Folder>\n')
         
+        ## This is the Take off surface folder
         f.write('<Folder>\n')
         f.write('<name>Take-off</name>\n')        
         TO.NorthTO(NToOls,mdl.iN(accur))
         TO.SouthTO(SToOls,mdl.iS(accur))
         f.write('</Folder>\n')
         
+        ## This are the North precision surface folders
         f.write('<Folder>\n')
         f.write('<name>North Precision</name>\n')
         if NIns == 'Y':
@@ -464,6 +486,7 @@ class dataInput:
                 f.write('</Folder>\n')
         f.write('</Folder>\n')
         
+        ## These are the South Precision surface folders
         f.write('<Folder>\n')
         f.write('<name>South Precision</name>\n')            
         if SIns == 'Y':
