@@ -134,3 +134,4 @@ dmypy.json
 !.elasticbeanstalk/*.global.yml
 
 /.ssh
+v2.0/
