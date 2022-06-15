@@ -7,9 +7,11 @@ bash ./Miniconda3-latest-Linux-x86_64.sh -b
 
 # conda env export > environment.yml
 git clone https://github.com/LHoBiz/ols_engine.git
+git fetch
 git checkout aws-linux
-sudo chown ec2-user /home/ec2-user/*
+sudo chown -R ec2-user /home/ec2-user/*
 sudo rm /home/ec2-user/ols_engine/v0.2/ -rf
+
 
 amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
 yum install -y httpd mariadb-server
