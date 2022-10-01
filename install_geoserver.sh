@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# from https://docs.geoserver.org/latest/en/user/installation/linux.html
+sudo amazon-linux-extras install java-openjdk11
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/2.21.1/geoserver-2.21.1-bin.zip -P /usr/share/geoserver
+echo "export GEOSERVER_HOME=/usr/share/geoserver" >> ~/.profile
+. ~/.profile
+sudo chown -R ec2-user /usr/share/geoserver/
+sh /usr/share/geoserver/bin/startup.sh

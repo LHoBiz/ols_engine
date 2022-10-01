@@ -1,3 +1,4 @@
+#!/bin/bash
 git pull
 rm -rf /var/www/html/src
 rm -f /var/www/html/index.html
