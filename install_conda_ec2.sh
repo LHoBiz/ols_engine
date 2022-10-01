@@ -2,6 +2,7 @@
 
 /miniconda3/bin/conda init
 source ~/.bashrc
+conda remove --name ols_engine --all
 conda create -n ols_engine python=3.8 -y
 conda activate ols_engine
 source ~/.bashrc
