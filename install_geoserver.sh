@@ -3,20 +3,22 @@
 # from https://docs.geoserver.org/latest/en/user/installation/linux.html
 sudo amazon-linux-extras install java-openjdk11
 cd ~
-sudo wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.5.2/geoserver-2.5.2-war.zip
-sudo unzip geoserver-2.5.2-war.zip *.war
-sudo mv geoserver.war /var/www/html
 
-# sudo rm -rf /usr/share/tomcat
-# sudo mkdir /usr/share/tomcat
-# cd /usr/share/tomcat
-# sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.26/bin/apache-tomcat-10.0.26.tar.gz
-# sudo tar xvzf apache-tomcat-10.0.26.tar.gz
 
-# cd apache-tomcat-10.0.26
-# ./configure
-# make
-# sudo make install
+sudo rm -rf /usr/share/tomcat
+sudo mkdir /usr/share/tomcat
+cd /usr/share/tomcat
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.26/bin/apache-tomcat-10.0.26.tar.gz
+sudo tar xvzf apache-tomcat-10.0.26.tar.gz
+
+cd apache-tomcat-10.0.26
+./configure
+make
+sudo make install
+
+# sudo wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.5.2/geoserver-2.5.2-war.zip
+# sudo unzip geoserver-2.5.2-war.zip *.war
+# sudo mv geoserver.war /var/www/html
 
 # sudo rm -rf /usr/share/geoserver
 # sudo mkdir /usr/share/geoserver
