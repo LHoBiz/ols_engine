@@ -1,24 +1,22 @@
 #!/bin/bash
 
 # from https://docs.geoserver.org/latest/en/user/installation/linux.html
-sudo amazon-linux-extras install java-openjdk11
+sudo amazon-linux-extras install java-openjdk11 -y
 cd ~
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.67/bin/apache-tomcat-9.0.67.tar.gz
+tar xvzf apache-tomcat-9.0.67.tar.gz
+mv apache-tomcat-9.0.67 tomcat9
+echo "export CATALINA_HOME="/home/ec2-user/tomcat9"" >> ~/.bashrc
+source ~/.bashrc
+# sudo chown -R ec2-user ~/*
+cp ~/ols_engine/tomcat9/conf/server.xml ~/tomcat9/conf/server.xml -y
+cp ~/ols_engine/tomcat9/conf/tomcat-users.xml ~/tomcat9/conf/tomcat-users.xml -y
+~/tomcat9/bin/startup.sh
 
 
-sudo rm -rf /usr/share/tomcat
-sudo mkdir /usr/share/tomcat
-cd /usr/share/tomcat
-sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.26/bin/apache-tomcat-10.0.26.tar.gz
-sudo tar xvzf apache-tomcat-10.0.26.tar.gz
-
-cd apache-tomcat-10.0.26
-./configure
-make
-sudo make install
-
-# sudo wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.5.2/geoserver-2.5.2-war.zip
-# sudo unzip geoserver-2.5.2-war.zip *.war
-# sudo mv geoserver.war /var/www/html
+wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.5.2/geoserver-2.5.2-war.zip
+unzip geoserver-2.5.2-war.zip *.war
+mv geoserver.war ~/tomcat9/webapps/
 
 # sudo rm -rf /usr/share/geoserver
 # sudo mkdir /usr/share/geoserver
