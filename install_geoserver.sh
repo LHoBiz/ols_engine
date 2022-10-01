@@ -8,7 +8,7 @@ sudo rm -rf /usr/share/tomcat
 sudo mkdir /usr/share/tomcat
 cd /usr/share/tomcat
 sudo wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.26/bin/apache-tomcat-10.0.26.tar.gz
-tar xvzf apache-tomcat-10.0.26.tar.gz
+sudo tar xvzf apache-tomcat-10.0.26.tar.gz
 
 cd apache-tomcat-10.0.26
 ./configure
