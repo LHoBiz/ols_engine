@@ -9,14 +9,14 @@ mv apache-tomcat-9.0.67 tomcat9
 echo "export CATALINA_HOME="/home/ec2-user/tomcat9"" >> ~/.bashrc
 source ~/.bashrc
 # sudo chown -R ec2-user ~/*
-cp ~/ols_engine/tomcat9/conf/server.xml ~/tomcat9/conf/server.xml -y
-cp ~/ols_engine/tomcat9/conf/tomcat-users.xml ~/tomcat9/conf/tomcat-users.xml -y
+cp ~/ols_engine/tomcat9/conf/server.xml ~/tomcat9/conf/server.xml 
+cp ~/ols_engine/tomcat9/conf/tomcat-users.xml ~/tomcat9/conf/tomcat-users.xml 
 ~/tomcat9/bin/startup.sh
 
 
 wget http://sourceforge.net/projects/geoserver/files/GeoServer/2.5.2/geoserver-2.5.2-war.zip
 unzip geoserver-2.5.2-war.zip *.war
-mv geoserver.war ~/tomcat9/webapps/
+cp geoserver.war ~/tomcat9/webapps/
 
 # sudo rm -rf /usr/share/geoserver
 # sudo mkdir /usr/share/geoserver
