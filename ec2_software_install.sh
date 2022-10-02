@@ -5,7 +5,7 @@ cd /usr/share/
 
 
 # conda env export > environment.yml
-git clone https://github.com/LHoBiz/ols_engine.git
+git clone -b aws-linux https://github.com/LHoBiz/ols_engine.git 
 git fetch
 git checkout aws-linux
 sudo chown -R ec2-user /home/ec2-user/*
