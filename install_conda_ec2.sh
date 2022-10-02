@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /usr/share
 sudo wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sudo sh ./Miniconda3-latest-Linux-x86_64.sh -b
 
