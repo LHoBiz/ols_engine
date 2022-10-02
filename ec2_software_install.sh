@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo yum update -y
 sudo yum install git -y
-cd /home/ec2-user
+cd /usr/share/
 
 
 # conda env export > environment.yml
@@ -12,13 +12,21 @@ sudo chown -R ec2-user /home/ec2-user/*
 sudo rm /home/ec2-user/ols_engine/v0.2/ -rf
 
 
-amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
-yum install -y httpd mariadb-server
-systemctl start httpd
-systemctl enable httpd
-usermod -a -G apache ec2-user
-chown -R ec2-user:apache /var/www
-chmod 2775 /var/www
-find /var/www -type d -exec chmod 2775 {} \;
-find /var/www -type f -exec chmod 0664 {} \;
-echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+sudo amazon-linux-extras install java-openjdk11 -y
+
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.67/bin/apache-tomcat-9.0.67.tar.gz
+sudo tar xvzf apache-tomcat-9.0.67.tar.gz
+sudo mv apache-tomcat-9.0.67 tomcat9
+echo "export CATALINA_HOME="/usr/share/tomcat9"" >> ~/.bashrc
+source ~/.bashrc
+
+sudo cp ./ols_engine/tomcat9/conf/server.xml ./tomcat9/conf/server.xml 
+sudo cp ./ols_engine/tomcat9/conf/tomcat-users.xml ./tomcat9/conf/tomcat-users.xml 
+
+
+sudo wget https://ixpeering.dl.sourceforge.net/project/geoserver/GeoServer/2.21.1/geoserver-2.21.1-war.zip 
+sudo mv geoserver-2.21.1-war.zip  geoserver.zip
+sudo unzip ./geoserver.zip *.war
+sudo cp geoserver.war ./tomcat9/webapps/
+echo "export GEOSERVER_HOME=/usr/share/geoserver" >> ~/.profile
+sudo ./tomcat9/bin/startup.sh
