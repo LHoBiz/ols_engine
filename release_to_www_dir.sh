@@ -1,8 +1,9 @@
 #!/bin/bash
 git pull
-rm -rf /var/www/html/src
-rm -f /var/www/html/index.html
+rm -rf /usr/share/tomcat9/webapps/ols_engine/src
+rm -f /usr/share/tomcat9/webapps/ols_engine/index.html
 
-mkdir /var/www/html/src/
-cp ~/ols_engine/src/* /var/www/html/src/
-cp ~/ols_engine/index.html /var/www/html
+mkdir -p /usr/share/tomcat9/webapps/ols_engine/src
+cd /usr/share/ols_engine
+cp ./src/* /usr/share/tomcat9/webapps/ols_engine/src/
+cp ./index.html /usr/share/tomcat9/webapps/ols_engine/
