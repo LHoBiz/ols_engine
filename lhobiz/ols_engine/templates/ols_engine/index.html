@@ -1,0 +1,10 @@
+{% if aerodrome_list %}
+    <ul>
+    {% for aerodrome in aerodrome_list %}
+        <li><a href="{% url 'ols_engine:detail' aerodrome.id %}">{{ aerodrome.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No aerodromes.</p>
+{% endif %}
+

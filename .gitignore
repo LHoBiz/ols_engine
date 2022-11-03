@@ -135,3 +135,7 @@ dmypy.json
 
 /.ssh
 v2.0/
+
+
+# django files
+migrations

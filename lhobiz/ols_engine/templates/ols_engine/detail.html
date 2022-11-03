@@ -1,0 +1,6 @@
+<h1>{{ aerodrome.name }}</h1>
+<ul>
+{% for runway in aerodrome.runway_set.all %}
+    <li>{{ runway.name }}</li>
+{% endfor %}
+</ul>

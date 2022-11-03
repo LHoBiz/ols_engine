@@ -41,3 +41,6 @@ cp /usr/share/ols_engine/src/* /usr/share/tomcat9/webapps/ols_engine/src/
 cp /usr/share/ols_engine/index.html /usr/share/tomcat9/webapps/ols_engine/
 
 
+export DJANGO_SUPERUSER_PASSWORD=d1j1kdhHj29ajafe
+export DJANGO_SUPERUSER_USERNAME=admin
+export DJANGO_SUPERUSER_EMAIL=magiva_aussie@hotmail.com
