@@ -1,10 +1,10 @@
 # -*- coding: cp1252 -*-
 import math
-import OLSDims
-import EnvSettings
+from . import OLSDims
+from . import EnvSettings
 
 from osgeo import osr
-import mdl
+from . import mdl
 ip = mdl.Data()
 NTOL=ip.NTOL
 STOL=ip.STOL

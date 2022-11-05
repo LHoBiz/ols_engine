@@ -1,8 +1,8 @@
 # -*- coding: cp1252 -*-
 import sys
 import math
-import OLSDims
-import EnvSettings
+from . import OLSDims
+from . import EnvSettings
 import os
 ##try:
 from osgeo import osr

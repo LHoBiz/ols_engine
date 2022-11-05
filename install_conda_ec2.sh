@@ -18,6 +18,8 @@ python manage.py migrate
 
 python manage.py createsuperuser --noinput
 
+python manage.py test ols_engine
+
 
 # conda install -n ols_engine gdal poppler tiledb=2.2 -y 
 # conda install -n ols_engine -c conda-forge postgresql -y 

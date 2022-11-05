@@ -2,11 +2,11 @@ import sys
 import os
 import math
 import csv
-import OLSDims
-import EnvSettings
+from . import OLSDims
+from . import EnvSettings
 
 from osgeo import osr
-import mdl
+from . import mdl
 ip = mdl.Data()
 f=ip.f
 NTOL=ip.NTOL

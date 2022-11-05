@@ -1,13 +1,13 @@
 # -*- coding: cp1252 -*-
 import WelcomeNote
 import math
-import OLSDims
-import mdl
-import EnvSettings
+from . import OLSDims
+from . import mdl
+from . import EnvSettings
 from osgeo import osr
-import Circ
+from . import Circ
 import os
-import ObsData
+from . import ObsData
 class dataInput:
     ip = mdl.Data()
     f=ip.f

@@ -1,27 +1,46 @@
 from tempfile import TemporaryFile
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
-from django.http import Http404
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from django.http import HttpResponse
+from django.urls import reverse
+from django.views import generic
+from .models import Aerodrome, Runway
 
-from .models import Aerodrome
+class IndexView(generic.ListView):
+    template_name = 'ols_engine/index.html'
+    context_object_name = 'aerodrome_list'
 
-def index(request):
-    aerodrome_list = Aerodrome.objects.order_by('-name')
-    template = loader.get_template('ols_engine/index.html')
-    context = {
-        'aerodrome_list': aerodrome_list,
-    }
-    return HttpResponse(template.render(context, request))
+    def get_queryset(self):
+        """Return the list of aerodromes."""
+        return Aerodrome.objects.order_by('-name')
 
-def detail(request, aerodrome_id):
-    aerodrome = get_object_or_404(Aerodrome, pk=aerodrome_id) 
-    return render(request, 'ols_engine/detail.html', {'aerodrome': aerodrome})
+class DetailView(generic.DetailView):
+    model = Aerodrome
+    template_name = 'ols_engine/detail.html'
 
-def runways(request, aerodrome_name):
+def runways(request, aerodrome_id):
     response = "You're looking at the runways of aerodrome %s."
-    return HttpResponse(response % aerodrome_name)
+    return HttpResponse(response % aerodrome_id)
 
-def generate(request, aerodrome_name):
-    return HttpResponse("You're generating ols for aerodrome %s." % aerodrome_name)
+def generate(request, aerodrome_id):
+    aerodrome = get_object_or_404(Aerodrome, pk=aerodrome_id)
+    try:
+        selected_runway = aerodrome.runway_set.get(pk=request.POST['runway'])
+    except (KeyError, Runway.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'ols_engine/detail.html', {
+            'aerodrome': aerodrome,
+            'error_message': "You didn't select a runway.",
+        })
+    else:
+        selected_runway.generate_ols()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('ols_engine:results', args=(aerodrome.id,)))
+
+class ResultsView(generic.DetailView):
+    model = Aerodrome
+    template_name = 'ols_engine/results.html'

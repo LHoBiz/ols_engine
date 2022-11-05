@@ -2,12 +2,12 @@
 import sys
 import os
 import math
-import OLSDims
+from . import OLSDims
 import csv
-import EnvSettings
+from . import EnvSettings
 
 from osgeo import osr
-import mdl
+from . import mdl
 ip = mdl.Data()
 f=ip.f
 AppOLS = OLSDims.AppDim.AppOLS

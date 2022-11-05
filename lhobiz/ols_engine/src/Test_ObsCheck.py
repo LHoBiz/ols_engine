@@ -1,8 +1,8 @@
 import sys
 import os
 import math
-import OLSDims
-import EnvSettings
+from . import OLSDims
+from . import EnvSettings
 
 ##try:
 from osgeo import osr

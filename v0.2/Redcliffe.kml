@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom"><Document><ScreenOverlay><name>Legend: Runway Data</name><visibility>1</visibility><overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/><screenXY x="25" y="95" xunits="pixels" yunits="pixels"/><rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/><size x="0" y="0" xunits="pixels" yunits="pixels"/><styleUrl>#KMLStyler</styleUrl><ExtendedData><SchemaData schemaUrl="#NewFeatureType"><SimpleData name="Airport name">Redcliffe</SimpleData>
+<SimpleData name="Code">ALANone</SimpleData>
+<SimpleData name="Runway Length (m)">850.67</SimpleData>
+<SimpleData name="Reference Elevation Datum (m)">22.5</SimpleData>
+<SimpleData name="ARP UTM (m)"> Zone 56
+ E=506800.87
+ N=6990789.52</SimpleData>
+<SimpleData name="ARP Elevation (m)">2.1336</SimpleData>
+<SimpleData name="North Approach"> Non-instrument</SimpleData>
+<SimpleData name="North Threshold UTM (m)"> Zone 56
+ E=507214.48
+ N=6990888.69</SimpleData>
+<SimpleData name="North Threshold Elev (m)">1.829</SimpleData>
+<SimpleData name="South Approach "> Non-instrument</SimpleData>
+<SimpleData name="South Threshold UTM (m)"> Zone 56
+ E=506387.26
+ N=6990690.35</SimpleData>
+<SimpleData name="South Threshold Elevation (m)">1.524</SimpleData>
+</SchemaData></ExtendedData></ScreenOverlay>
+<name>Redcliffe</name>
+<StyleMap id="m_ylw-pushpin">
+<Pair>
+<key>normal</key>
+<styleUrl>#s_ylw-pushpin</styleUrl>
+</Pair>
+<Pair>
+<key>highlight</key>
+<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+</Pair>
+</StyleMap>
+<Style id="s_ylw-pushpin_hl">
+<IconStyle>
+<scale>1.3</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+</Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+</IconStyle>
+<PolyStyle>
+<color>19ff0011</color>
+</PolyStyle>
+</Style>
+<Style id="s_ylw-pushpin">
+<IconStyle>
+<scale>1.1</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>
+</Icon>
+<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+</IconStyle>
+<PolyStyle>
+<color>19ff0011</color>
+</PolyStyle>
+</Style>
+<Folder>
+<name>Approach/Take-off</name>
+</Folder>
+<Folder>
+<name>Transitional</name>
+</Folder>
+</Document>
+</kml>
+<SimpleData name="Surface">NorthTransitional1</SimpleData><SimpleData name="Z-min">1.7214371484627904</SimpleData><SimpleData name="Z-max">10.757291432308527</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.20434309448579,153.07067189496803,10.757291432308527
+-27.204554089342178,153.06969011465617,10.72143714846279
+-27.204949113826203,153.06979630436368,1.7214371484627904
+-27.204738118231685,153.07077808793304,1.7572914323085271
+-27.20434309448579,153.07067189496803,10.757291432308527
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=0 i=0 j=3</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional1</SimpleData><SimpleData name="Z-min">1.6855828646170536</SimpleData><SimpleData name="Z-max">10.72143714846279</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.204554089342178,153.06969011465617,10.72143714846279
+-27.204765077322502,153.06870833063178,10.685582864617054
+-27.205160102544546,153.06881451708173,1.6855828646170536
+-27.204949113826203,153.06979630436368,1.7214371484627904
+-27.204554089342178,153.06969011465617,10.72143714846279
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=0 i=0 j=4</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional1</SimpleData><SimpleData name="Z-min">1.6765000000000008</SimpleData><SimpleData name="Z-max">10.685582864617054</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.204765077322502,153.06870833063178,10.685582864617054
+-27.204818525220965,153.0684596174642,10.6765
+-27.205213550629946,153.06856580308892,1.6765000000000008
+-27.205160102544546,153.06881451708173,1.6855828646170536
+-27.204765077322502,153.06870833063178,10.685582864617054
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+
+
+
+
+
+
+
+</Folder>
+
+
+
+
+
+
+
+<Folder>
+<ScreenOverlay>
+<name>Runway: Code ALA</name>
+<visibility>0</visibility>
+<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<screenXY x="25" y="95" xunits="pixels" yunits="pixels"/>
+<rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="pixels" yunits="pixels"/>
+<styleUrl>#KMLStyler</styleUrl>
+<ExtendedData>
+<SchemaData schemaUrl="#NewFeatureType">
+<SimpleData name="Surface">Dimensions</SimpleData>
+<SimpleData name="Transitional">-</SimpleData>
+<SimpleData name="Divergence">0.05</SimpleData>
+<SimpleData name="Slope">0.2</SimpleData>
+</SchemaData>
+</ExtendedData>
+</ScreenOverlay>
+
+
+
+
+
+
+
+<name>NorthTransitional2</name>
+<Placemark>
+<name>n=1 i=0 j=0</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional2</SimpleData><SimpleData name="Z-min">1.7931457161542639</SimpleData><SimpleData name="Z-max">10.829</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.205501172597653,153.07306024688367,10.829
+-27.205712184159086,153.07207846096827,10.793145716154264
+-27.20531716146398,153.07197226249008,1.7931457161542639
+-27.20510615064094,153.07295404514804,1.8290000000000006
+-27.205501172597653,153.07306024688367,10.829
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=1 i=0 j=1</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional2</SimpleData><SimpleData name="Z-min">1.7572914323085271</SimpleData><SimpleData name="Z-max">10.793145716154264</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.205712184159086,153.07207846096827,10.793145716154264
+-27.205923188844412,153.07109667133935,10.757291432308527
+-27.205528165411007,153.0709904761187,1.7572914323085271
+-27.20531716146398,153.07197226249008,1.7931457161542639
+-27.205712184159086,153.07207846096827,10.793145716154264
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=1 i=0 j=2</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional2</SimpleData><SimpleData name="Z-min">1.7214371484627904</SimpleData><SimpleData name="Z-max">10.757291432308527</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.205923188844412,153.07109667133935,10.757291432308527
+-27.206134186653433,153.0701148779972,10.72143714846279
+-27.205739162481834,153.07000868603419,1.7214371484627904
+-27.205528165411007,153.0709904761187,1.7572914323085271
+-27.205923188844412,153.07109667133935,10.757291432308527
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=1 i=0 j=3</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional2</SimpleData><SimpleData name="Z-min">1.6855828646170536</SimpleData><SimpleData name="Z-max">10.72143714846279</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.206134186653433,153.0701148779972,10.72143714846279
+-27.20634517758598,153.06913308094215,10.685582864617054
+-27.205950152676284,153.0690268922369,1.6855828646170536
+-27.205739162481834,153.07000868603419,1.7214371484627904
+-27.206134186653433,153.0701148779972,10.72143714846279
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=1 i=0 j=4</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional2</SimpleData><SimpleData name="Z-min">1.6765000000000008</SimpleData><SimpleData name="Z-max">10.685582864617054</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.20634517758598,153.06913308094215,10.685582864617054
+-27.20639862623225,153.0688843644735,10.6765
+-27.2060036011356,153.06877817659353,1.6765000000000008
+-27.205950152676284,153.0690268922369,1.6855828646170536
+-27.20634517758598,153.06913308094215,10.685582864617054
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+
+
+
+
+
+
+
+</Folder>
+
+
+
+
+
+
+
+<Folder>
+<ScreenOverlay>
+<name>Runway: Code ALA</name>
+<visibility>0</visibility>
+<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<screenXY x="25" y="95" xunits="pixels" yunits="pixels"/>
+<rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="pixels" yunits="pixels"/>
+<styleUrl>#KMLStyler</styleUrl>
+<ExtendedData>
+<SchemaData schemaUrl="#NewFeatureType">
+<SimpleData name="Surface">Dimensions</SimpleData>
+<SimpleData name="Transitional">-</SimpleData>
+<SimpleData name="Divergence">0.05</SimpleData>
+<SimpleData name="Slope">0.2</SimpleData>
+</SchemaData>
+</ExtendedData>
+</ScreenOverlay>
+
+
+
+
+
+
+
+<name>NorthTransitional3</name>
+<Placemark>
+<name>n=2 i=0 j=0</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional3</SimpleData><SimpleData name="Z-min">1.8290000000000006</SimpleData><SimpleData name="Z-max">10.829</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.20392108414552,153.07263544445317,10.829
+-27.203885633799747,153.07366441474935,10.829
+-27.204061198916875,153.07371161602143,6.829000000000001
+-27.20431610641488,153.0727416439328,1.8290000000000006
+-27.20392108414552,153.07263544445317,10.829
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=2 i=0 j=1</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional3</SimpleData><SimpleData name="Z-min">6.829000000000001</SimpleData><SimpleData name="Z-max">11.829</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.203885633799747,153.07366441474935,10.829
+-27.203806284706285,153.07468158368172,11.829
+-27.203806284706285,153.07468158368172,11.829
+-27.204061198916875,153.07371161602143,6.829000000000001
+-27.203885633799747,153.07366441474935,10.829
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+
+
+
+
+
+
+
+</Folder>
+
+
+
+
+
+
+
+<Folder>
+<ScreenOverlay>
+<name>Runway: Code ALA</name>
+<visibility>0</visibility>
+<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<screenXY x="25" y="95" xunits="pixels" yunits="pixels"/>
+<rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="pixels" yunits="pixels"/>
+<styleUrl>#KMLStyler</styleUrl>
+<ExtendedData>
+<SchemaData schemaUrl="#NewFeatureType">
+<SimpleData name="Surface">Dimensions</SimpleData>
+<SimpleData name="Transitional">-</SimpleData>
+<SimpleData name="Divergence">0.05</SimpleData>
+<SimpleData name="Slope">0.2</SimpleData>
+</SchemaData>
+</ExtendedData>
+</ScreenOverlay>
+
+
+
+
+
+
+
+<name>NorthTransitional4</name>
+<Placemark>
+<name>n=3 i=0 j=0</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional4</SimpleData><SimpleData name="Z-min">1.8290000000000006</SimpleData><SimpleData name="Z-max">10.829</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.205501172597653,153.07306024688367,10.829
+-27.205114589187293,153.07399482677332,10.829
+-27.2049390241937,153.07394762460996,6.829000000000001
+-27.20510615064094,153.07295404514804,1.8290000000000006
+-27.205501172597653,153.07306024688367,10.829
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=3 i=0 j=1</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional4</SimpleData><SimpleData name="Z-min">6.829000000000001</SimpleData><SimpleData name="Z-max">11.829</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.205114589187293,153.07399482677332,10.829
+-27.2047718907054,153.07494120109098,11.829
+-27.2047718907054,153.07494120109098,11.829
+-27.2049390241937,153.07394762460996,6.829000000000001
+-27.205114589187293,153.07399482677332,10.829
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+
+
+
+
+
+
+
+</Folder>
+
+
+
+
+
+
+
+<Folder>
+<ScreenOverlay>
+<name>Runway: Code ALA</name>
+<visibility>0</visibility>
+<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<screenXY x="25" y="95" xunits="pixels" yunits="pixels"/>
+<rotationXY x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="pixels" yunits="pixels"/>
+<styleUrl>#KMLStyler</styleUrl>
+<ExtendedData>
+<SchemaData schemaUrl="#NewFeatureType">
+<SimpleData name="Surface">Dimensions</SimpleData>
+<SimpleData name="Transitional">-</SimpleData>
+<SimpleData name="Divergence">0.05</SimpleData>
+<SimpleData name="Slope">0.2</SimpleData>
+</SchemaData>
+</ExtendedData>
+</ScreenOverlay>
+
+
+
+
+
+
+
+<name>NorthTransitional1</name>
+<Placemark>
+<name>n=0 i=0 j=0</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional1</SimpleData><SimpleData name="Z-min">1.524000000000001</SimpleData><SimpleData name="Z-max">10.559854283845738</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.207295955461593,153.06470841489994,10.524000000000001
+-27.20708499552129,153.06569022868433,10.559854283845738
+-27.20668996802418,153.0655840514038,1.5598542838457377
+-27.20690092722684,153.06460224087766,1.524000000000001
+-27.207295955461593,153.06470841489994,10.524000000000001
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=0 i=0 j=1</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional1</SimpleData><SimpleData name="Z-min">1.5598542838457377</SimpleData><SimpleData name="Z-max">10.595708567691474</SimpleData></SchemaData></ExtendedData><Polygon>
+<altitudeMode>absolute</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-27.20708499552129,153.06569022868433,10.559854283845738
+-27.206874028703673,153.06667203875708,10.595708567691474
+-27.20647900194429,153.0665658582184,1.5957085676914744
+-27.20668996802418,153.0655840514038,1.5598542838457377
+-27.20708499552129,153.06569022868433,10.559854283845738
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>n=0 i=0 j=2</name>
+<styleUrl>#m_ylw-pushpin</styleUrl>
+<ExtendedData><SchemaData schemaUrl="#S_t1_ISDDDDDDDDSSS"><SimpleData name="Surface">NorthTransitional1</SimpleData>

@@ -1,12 +1,9 @@
 # -*- coding: cp1252 -*-
-import sys
-import os
 import math
-import OLSDims
-import EnvSettings
-
+from . import OLSDims
+from . import mdl
+from . import EnvSettings
 from osgeo import osr
-import mdl
 ip = mdl.Data()
 f=ip.f
 AppOLS = OLSDims.AppDim.AppOLS
@@ -54,19 +51,19 @@ completeName=ip.completeName
 
 RwyLen = math.sqrt((NTE-STE)*(NTE-STE) + (NTN-STN)*(NTN-STN))
 
-def NInApp(ApOls,accur):
+def NBaulked(ApOls,accur):
     E1 = NE
     E2 = SE
     ns = 'n'
-    Surf = 'NorthInnerAppoach'
-    InnerApp(E1,E2,ns,Surf,accur,ApOls)
-def SInApp(ApOls,accur):
+    Surf = 'NorthBaulkedLanding'
+    BaulkedLanding(E1,E2,ns,Surf,accur,ApOls)
+def SBaulked(ApOls,accur):
     E1 = SE
     E2 = NE
     ns = 's'
-    Surf = 'SouthInnerApproach'
-    InnerApp(E1,E2,ns,Surf,accur,ApOls)
-def InnerApp(E1,E2,ns,Surf,accur,ApOls):
+    Surf = 'SouthBaulkedLanding'
+    BaulkedLanding(E1,E2,ns,Surf,accur,ApOls)
+def BaulkedLanding(E1,E2,ns,Surf,accur,ApOls):
     if accur >= 200:
         x = accur/100
     elif accur>=100 and accur< 200:
@@ -80,35 +77,37 @@ def InnerApp(E1,E2,ns,Surf,accur,ApOls):
     Square = []
     count = 0
     ct = 0
+    BlkE = E1 + ((E2-E1)/RwyLen)*ApOls[7][1]
+    BlkOut = ApOls[7][1] + ((RED+ApOls[2][0]) - (E1+((E2-E1)/RwyLen)*ApOls[7][1]))/ApOls[7][3]
 
-    I = range(int(1+math.ceil((ApOls[4][0])/accur)))
-    J = range(int(1+math.ceil((ApOls[4][2])/accur)))
+    I = range(int(1+math.ceil(((BlkOut*ApOls[7][2]) + ApOls[7][0])/accur)))
+    J = range(int(1+math.ceil((BlkOut-ApOls[7][1] )/accur)))
     
     for i in I: 
 
         U = []
         T = []
-        L=[]
+        L =[]
         for j in J:
-            par  = ApOls[4][1] + ApOls[4][2] - accur*j
-            perp = ApOls[4][0]/2 - i*accur
-            Z= (E1-RED)+(par - ApOls[3][1])*ApOls[4][3] 
-          
-            if par > ApOls[3][1]:
+            par =  -accur*j +  BlkOut
+            perp = ApOls[7][0]/2 + (par-ApOls[7][1])*ApOls[7][2] - i*accur
+            Z =  ((E1-RED) +((E2-E1)/RwyLen)*ApOls[7][1]) + (par-ApOls[7][1])*ApOls[7][3]
+            if par > ApOls[7][1]:
                 if perp <= 0:
                     perp = 0
-            if par <= ApOls[3][1]:
-                par = ApOls[3][1]
+            if par <= ApOls[7][1]:
+                par = ApOls[7][1]
+                perp = ApOls[7][0]/2 + (par-ApOls[7][1])*ApOls[7][2] - i*accur
                 if perp <= 0:
                     perp = 0
-                Z= (E1-RED)
+                Z= (E1-RED) +((E2-E1)/RwyLen)*ApOls[7][1]
           
 
             L.append([par,perp,Z])
 
         if perp == 0:
             T.append(i)
-        if par == ApOls[3][1]:
+        if par == ApOls[7][1]:
             U.append(j)
 
         s.append(L)
@@ -161,19 +160,19 @@ def InnerApp(E1,E2,ns,Surf,accur,ApOls):
                         xxx=[]
                         if n == 0: #adjacent to runway right
                             xx =[
-                            [s[i][j][0]*F[1],    s[i][j][1]*F[0],        s[i][j][2]],
-                            [s[i][j+1][0]*F[1],  s[i][j+1][1]*F[0],      s[i][j+1][2]],
-                            [s[i+1][j+1][0]*F[1],s[i+1][j+1][1]*F[0],    s[i+1][j+1][2]],
-                            [s[i+1][j][0]*F[1],  s[i+1][j][1]*F[0],      s[i+1][j][2]],
-                            [s[i][j][0]*F[1],    s[i][j][1]*F[0],        s[i][j][2]]
+                            [s[i][j][0]*F[0],    s[i][j][1]*F[0],        s[i][j][2]],
+                            [s[i][j+1][0]*F[0],  s[i][j+1][1]*F[0],      s[i][j+1][2]],
+                            [s[i+1][j+1][0]*F[0],s[i+1][j+1][1]*F[0],    s[i+1][j+1][2]],
+                            [s[i+1][j][0]*F[0],  s[i+1][j][1]*F[0],      s[i+1][j][2]],
+                            [s[i][j][0]*F[0],    s[i][j][1]*F[0],        s[i][j][2]]
                             ]
                         if n == 1: #adjacent to runway left
                             xx =[
-                            [s[i][j][0]*F[1],    s[i][j][1]*F[1],        s[i][j][2]],
-                            [s[i][j+1][0]*F[1],  s[i][j+1][1]*F[1],      s[i][j+1][2]],
-                            [s[i+1][j+1][0]*F[1],s[i+1][j+1][1]*F[1],    s[i+1][j+1][2]],
-                            [s[i+1][j][0]*F[1],  s[i+1][j][1]*F[1],      s[i+1][j][2]],
-                            [s[i][j][0]*F[1],    s[i][j][1]*F[1],        s[i][j][2]]
+                            [s[i][j][0]*F[0],    s[i][j][1]*F[1],        s[i][j][2]],
+                            [s[i][j+1][0]*F[0],  s[i][j+1][1]*F[1],      s[i][j+1][2]],
+                            [s[i+1][j+1][0]*F[0],s[i+1][j+1][1]*F[1],    s[i+1][j+1][2]],
+                            [s[i+1][j][0]*F[0],  s[i+1][j][1]*F[1],      s[i+1][j][2]],
+                            [s[i][j][0]*F[0],    s[i][j][1]*F[1],        s[i][j][2]]
                             ]
 
                         f.write(   "<Placemark>\n")
@@ -206,7 +205,7 @@ def InnerApp(E1,E2,ns,Surf,accur,ApOls):
                         for h in range(len(xx)):
                             e = RED+xx[h][2]
                             Utm = mdl.toUTM(NTE,NTN,STE,STN,ARP,SE,NE,xx[h][0],xx[h][1],e,ns)
-                            Wgs = list(mdl.U_W(Utm[0],Utm[1],zone, e))
+                            Wgs = list(mdl.U_W(Utm[0],Utm[1],zone,e))
                             f.write(str(Wgs[0])+","+str(Wgs[1])+","+str(Wgs[2]))
                             f.write(   "\n")
                       

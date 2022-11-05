@@ -1,0 +1,2 @@
+No,Name,ICAO_Code,IATA_Code,Zone,Runway_n,E_n,N_n,Z_ft_n,Z_m_n,Lat_n,Lon_n, Runway_s,E_s,N_s,Z_ft_s,Z_m_s,Lat_s,Lon_s,Z_ft_ARP,Z_m_ARP,RWY_WID,RSW,Code_No,Code_Ltr,Instrument,Precision,ARPE,ARPN,N_TO_InEdge,S_TO_InEdge,,
+1,Redcliffe,YRED,None,56,07,507214.48,6990888.69,1.829,1.829,None,None,07,506387.26,6990690.35,1.524,1.524,None,None,2.1336,2.1336,18.0,90.0,ALA,ALA,N,N,506800.87,6990789.52,60.0,60.0

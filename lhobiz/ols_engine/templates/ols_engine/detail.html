@@ -4,3 +4,16 @@
     <li>{{ runway.name }}</li>
 {% endfor %}
 </ul>
+
+<form action="{% url 'ols_engine:generate' aerodrome.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ aerodrome.name }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for runway in aerodrome.runway_set.all %}
+            <input type="radio" name="runway" id="runway{{ forloop.counter }}" value="{{ runway.id }}">
+            <label for="runway{{ forloop.counter }}">{{ runway.name }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Generate">
+    </form>

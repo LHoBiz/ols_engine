@@ -1,0 +1,9 @@
+<h1>{{ aerodrome.name }}</h1>
+
+<ul>
+{% for runway in aerodrome.runway_set.all %}
+    <li>{{ runway.name }}  generated</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'ols_engine:detail' aerodrome.id %}">Generate again?</a>

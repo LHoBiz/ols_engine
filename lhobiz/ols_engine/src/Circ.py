@@ -1,8 +1,8 @@
 # -*- coding: cp1252 -*-
 import math
-import OLSDims
-import mdl
-import EnvSettings
+from . import OLSDims
+from . import mdl
+from . import EnvSettings
 from osgeo import osr
 ip = mdl.Data()
 f=ip.f
