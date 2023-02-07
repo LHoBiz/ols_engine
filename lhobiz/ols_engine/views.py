@@ -8,6 +8,22 @@ from django.urls import reverse
 from django.views import generic
 from .models import Aerodrome, Runway
 
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+
+class Register(CreateView):
+    template_name = 'registration/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('register-success')
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.success_url)
+        
+
 class IndexView(generic.ListView):
     template_name = 'ols_engine/index.html'
     context_object_name = 'aerodrome_list'

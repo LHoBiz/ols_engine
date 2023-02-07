@@ -1,4 +1,7 @@
-from django.urls import path
+from django.urls import path, include
+from ols_engine.views import Register
+from django.views.generic import TemplateView
+from django.contrib import admin
 
 from . import views
 app_name = 'ols_engine'
@@ -13,5 +16,12 @@ urlpatterns = [
     path('<int:aerodrome_id>/generate/', views.generate, name='generate'),
 
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+
+    path( 'register/', Register.as_view(), name="register"),
+    path('register/success', TemplateView.as_view(template_name="registration/success.html"), name="register-success"),
+
+    path('', include('django.contrib.auth.urls')),
+
+
 ]
 

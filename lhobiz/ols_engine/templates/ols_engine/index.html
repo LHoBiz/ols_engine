@@ -1,5 +1,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'ols_engine/style.css' %}">
+<span style="float: right;">
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}. <a href="{% url 'ols_engine:logout' %}?next=/">Logout</a>.
+    {% else %}
+        Not logged in. <a href="{% url 'ols_engine:login' %}?next=/">Log in</a>.
+    {% endif %}
+    </span>
+{% if user.authenticated}
 {% if aerodrome_list %}
     <ul>
     {% for aerodrome in aerodrome_list %}

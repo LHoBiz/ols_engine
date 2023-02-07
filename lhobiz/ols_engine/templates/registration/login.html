@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% blocksidenav %}
+    <li><a href="/">Home</a></li>
+{% endblock sidenav %} 
+
+{% block content %} 
+<h1>Please Login</h1>
+<p>You must be logged in to create models.</p>
+
+<forms method="post" action="{% url 'login' %}">
+    <table>
+        {{ forms.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="login"></td>
+        </tr>
+    </table>
+    <p>Not registered yet? <a href="{% url 'register' %}">Register here.</a></p>
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% csrf_token %}
+</forms>
+
+{% endblock content %}
