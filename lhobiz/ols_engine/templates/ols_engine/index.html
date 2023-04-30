@@ -7,7 +7,7 @@
         Not logged in. <a href="{% url 'ols_engine:login' %}?next=/">Log in</a>.
     {% endif %}
     </span>
-{% if user.authenticated}
+{% if user.is_authenticated %}
 {% if aerodrome_list %}
     <ul>
     {% for aerodrome in aerodrome_list %}
@@ -18,3 +18,6 @@
     <p>No aerodromes.</p>
 {% endif %}
 
+{% else %}
+Please login to view your airport data.
+{% endif %}
