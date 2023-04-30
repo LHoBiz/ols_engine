@@ -20,8 +20,8 @@ python manage.py createsuperuser --noinput
 
 python manage.py test ols_engine
 
-
-# conda install -n ols_engine gdal poppler tiledb=2.2 -y 
+conda install -n ols_engine -c conda-forge gdal
+# conda install -n ols_engine tiledb=2.2 -y 
 # conda install -n ols_engine -c conda-forge postgresql -y 
 # conda install -n ols_engine -c conda-forge/label/gcc7 postgresql -y 
 # conda install -n ols_engine -c conda-forge/label/broken postgresql -y 
