@@ -4,6 +4,11 @@ import os
 
 
 class Aerodrome(models.Model):
+    
+    # owner of the Aerodrome object
+    owner = models.CharField(max_length=200)
+    
+
     name = models.CharField(max_length=200)
     icao_code = models.CharField(max_length=4)
     iata_code = models.CharField(max_length=4, null=True)
