@@ -345,7 +345,7 @@ class dataInput:
         f.write('<SimpleData name="Airport name">'+str(KML_NAME)+'</SimpleData>\n')
         #print CN, CL
         try:
-            f.write('<SimpleData name="Code">'+str(int(CN))+str(CL)+'</SimpleData>\n')
+            f.write('<SimpleData name="Code">'+str(CN)+str(CL)+'</SimpleData>\n')
         except:
             f.write('<SimpleData name="Code">'+str(CN)+str(CL)+'</SimpleData>\n')
         f.write('<SimpleData name="Runway Length (m)">'+str(round(RwyLen,2))+'</SimpleData>\n')		
@@ -526,7 +526,7 @@ class dataInput:
         ## in Google Earth.
         ###########################################################
 
-        #f.close()
+        f.close()
         os.startfile(completeName)
         #print 'OK, done now'
 
