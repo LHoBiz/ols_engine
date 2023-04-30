@@ -14,6 +14,17 @@
             ],
             "django": true,
             "justMyCode": true
-        }
+        },
+        {
+            "name": "lhobiz",
+            "python": "c:\\Users\\lhodgson\\Miniconda3\\envs\\ols_engine\\python.exe",
+            "type": "python",
+            "request": "launch",
+            "program": "C:\\Users\\lhodgson\\OneDrive - Esri Australia\\00_Admin\\lho\\ols_engine\\lhobiz\\manage.py",
+            "console": "internalConsole",
+            "args": ["runserver"],
+           "django": true,
+           "justMyCode": true,
+          }
     ]
 }
