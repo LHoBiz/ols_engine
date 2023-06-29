@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views import generic
 from .models import Aerodrome, Runway
+from django.contrib.auth.models import User
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -15,6 +16,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 
 class Register(CreateView):
+    model = User
     template_name = 'registration/register.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('register-success')
